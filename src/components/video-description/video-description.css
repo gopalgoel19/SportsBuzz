@@ -1,1 +1,13 @@
- 
+.height200 {
+    height: 150px;
+}
+
+.footer-text {
+    font-size: 14px;
+    color: rgb(158, 149, 149);
+    letter-spacing: 1px;
+}
+
+.lead-text {
+    font-weight: bold;
+}

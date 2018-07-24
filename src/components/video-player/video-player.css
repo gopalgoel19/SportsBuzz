@@ -1,1 +1,23 @@
 @import '../../../node_modules/video.js/dist/video-js.css';
+
+.overlay {
+    position: absolute;
+    width: 960px;
+    height: 400px;
+    
+}
+
+.overlayy {
+    position: absolute;
+    width: 960px;
+    height: 400px;
+    z-index: 999;
+}
+
+.op1 {
+    opacity: 1;
+}
+
+.op5 {
+    opacity: 0.5;
+}

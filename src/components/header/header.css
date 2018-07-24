@@ -1,6 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Karla');
+
 .mr-10 {
     margin-right: 10px;
 }
 .bg-light {
-    background-color: #E1E1E1 !important;
+    background-color: rgb(206, 34, 80) !important;
+    border-radius: 5px;
+    height: 45px;
+    padding: 10px;
+    box-shadow: 0px 6px 6px 1px #a8a2a2;
+}
+
+.navbar-brand {
+    color: white !important;
+    font-weight: 600;
+
+    font-size: 1.2rem;
+    font-family: 'Karla', sans-serif;
+    letter-spacing: 2px;
 }
