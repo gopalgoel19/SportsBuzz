@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import VideoPlayer from '../video-player/video-player';
-import VideoDescription from '../video-description/video-description';
 import './left-pane.css';
-import TweetCountGraph from '../tweet-count-graph/tweet-count-graph';
+
 
 const  videoJsOptions = {
   
@@ -10,6 +9,7 @@ const  videoJsOptions = {
 export default class LeftPane extends Component {
   constructor(props){
     super(props);
+
     this.state = {
       autoplay: true,
       controls: true,
@@ -22,13 +22,14 @@ export default class LeftPane extends Component {
   }
 
   componentDidMount() {
-    videoJsOptions['currentTime'] = this.props.timeStart;
+    console.log("in left pane", this.props.markers);
+    
   }
   render() {
-    // console.log(this.props.listOfIntervals);
+    
     return (
-      <div className="col-8 height550">
-        <VideoPlayer {...this.state} currentTime={this.props.currentTime} listOfIntervals={this.props.listOfIntervals}/>
+      <div className="col-12 height550">
+        <VideoPlayer tags={this.props.tags} {...this.state} currentTime={this.props.currentTime} staticMarkers={this.props.staticMarkers} listOfIntervals={this.props.listOfIntervals}/>
       </div>
     )
   }

@@ -1,0 +1,6 @@
+[
+    {"time": 1, "text": "Goal", "class": "fa fa-futbol-o"},
+    {"time": 5, "text": "Red Card", "class": "fa fa-bookmark red"},
+    {"time": 23.6,"text": "Yellow Card", "class": "fa fa-bookmark yellow"},
+    {"time": 29, "text": "Substitution", "class": "fa fa-exchange-alt"}
+  ]

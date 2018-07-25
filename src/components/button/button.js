@@ -14,8 +14,6 @@ export default class Button extends Component{
     }
     selectButton(name,e){
         this.setState((prevState)=>{
-            let tagstyle = {};
-
             if(prevState.style === "unselected"){
                 this.props.onTagSelect(name);
                 return {style: "selected"};

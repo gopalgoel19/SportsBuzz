@@ -2,12 +2,11 @@ import React, { Component } from 'react'
 // import graphData from './../../mock data/graph-data.json';
 import  CanvasJSReact from './../../lib/canvasjs.react';
 import graphData from './../../mock data/graphplot.json';
-var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 export default class TweetCountGraph extends Component {
 
   componentDidMount() {
-      console.log(graphData);
+ 
   }
 
   render() {
