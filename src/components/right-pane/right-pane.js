@@ -6,8 +6,18 @@ export default class RightPane extends Component {
 
   render() {
     let listOfButton = []
-    // const listOfButton = this.props.tags.map((tag) => <Button key={tag} onClick={this.props.onTagCllick} name={tag}/>);
-    for(let tag in this.props.tags){
+
+    let listOfKeywords = [];
+    for (let tag in this.props.tags){
+      let obj = this.props.tags[tag];
+      let intervalsCount = obj.length;
+      listOfKeywords.push([intervalsCount,tag]);
+    }
+    listOfKeywords.sort();
+    listOfKeywords.reverse();
+    console.log(listOfKeywords);
+    for(let i=0;i< listOfKeywords.length && i<20 ;i++){
+      let tag = listOfKeywords[i][1];
       listOfButton.push(<Button key={tag} onTagSelect={this.props.onTagSelect} onTagUnselect={this.props.onTagUnselect} name={tag}/>);
     }
     return (

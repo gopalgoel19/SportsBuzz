@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './outer-pane.css';
 import LeftPane from '../left-pane/left-pane';
 import RightPane from '../right-pane/right-pane';
+import * as Keywords from '../../data/keywords.json';
 
 export default class OuterPane extends Component {
 
@@ -9,42 +10,7 @@ export default class OuterPane extends Component {
     super(props);
     this.state = {
       currentTime: 5,
-      tags: {
-        "Neymar": [
-          {
-            startTime: 0,
-            endTime: 10
-          },
-          {
-            startTime: 20,
-            endTime:30
-          },
-          {
-            startTime: 40,
-            endTime: 50
-          },
-          {
-            startTime: 60,
-            endTime: 70
-          }
-        ],
-        "Goal": [
-          {
-            startTime: 0,
-            endTime: 10
-          }
-        ],
-        "Messi": [
-          {
-            startTime: 0,
-            endTime: 10
-          },
-          {
-            startTime: 20,
-            endTime:30
-          }
-        ]
-      },
+      tags: Keywords,
       listOfIntervals: []
     }
   }
@@ -61,7 +27,7 @@ export default class OuterPane extends Component {
   }
 
   onTagUnselect(TagName){
-    alert('hey');
+  
   }
 
   render() {
