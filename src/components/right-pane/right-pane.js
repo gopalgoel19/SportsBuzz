@@ -8,7 +8,7 @@ export default class RightPane extends Component {
     let listOfButton = []
     // const listOfButton = this.props.tags.map((tag) => <Button key={tag} onClick={this.props.onTagCllick} name={tag}/>);
     for(let tag in this.props.tags){
-      listOfButton.push(<Button key={tag} onClick={this.props.onTagClick} name={tag}/>);
+      listOfButton.push(<Button key={tag} onTagSelect={this.props.onTagSelect} onTagUnselect={this.props.onTagUnselect} name={tag}/>);
     }
     return (
       <div className="col rightpane">

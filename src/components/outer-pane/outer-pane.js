@@ -54,10 +54,14 @@ export default class OuterPane extends Component {
     this.setState({currentTime: time});
   }
 
-  onTagClick(TagName){
+  onTagSelect(TagName){
     this.setState(()=>{
       return {listOfIntervals: this.state.tags[TagName] }
     });
+  }
+
+  onTagUnselect(TagName){
+    alert('hey');
   }
 
   render() {
@@ -69,7 +73,7 @@ export default class OuterPane extends Component {
       <button onClick={this.changeTime.bind(this,5)}>5</button> */}
         <div className="mt-4 h-100 row">
           <LeftPane currentTime={this.state.currentTime} listOfIntervals={this.state.listOfIntervals}/>
-          <RightPane tags={this.state.tags} onTagClick={this.onTagClick.bind(this)}/>
+          <RightPane tags={this.state.tags} onTagSelect={this.onTagSelect.bind(this)} onTagUnselect={this.onTagUnselect.bind(this)}/>
         </div>
       </div>
     )
