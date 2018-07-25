@@ -3,19 +3,21 @@ import './right-pane.css'
 import Button from '../button/button'
 
 export default class RightPane extends Component {
-  render() {
-    let listOfButton = []
-    let listOfKeywords = [];
 
+  constructor(props){
+    super(props);
+
+    let listOfButtonSelected = [];
+    let listOfKeywords = [];
     for (let tag in this.props.tags){
       let obj = this.props.tags[tag];
       let intervalsCount = obj.length;
-      listOfKeywords.push({intervalsCount: intervalsCount,tag: tag});
+      listOfKeywords.push([intervalsCount,tag]);
     }
     listOfKeywords.sort();
     listOfKeywords.reverse();
     console.log(listOfKeywords);
-    for(let i=0;i< listOfKeywords.length && i<20 ;i++){
+    for(let i=0;i< listOfKeywords.length && i<30 ;i++){
       let name = listOfKeywords[i][1];
       let obj = {
         tag: name,

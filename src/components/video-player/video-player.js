@@ -18,46 +18,46 @@ export default class VideoPlayer extends React.Component {
 
   contructor(props) {
     this.overlayRef = React.createRef();
-    
+
   }
 
   componentDidMount() {
-    this.player = videojs(this.videoNode, this.props,  () => {
+    this.player = videojs(this.videoNode, this.props, () => {
 
     });
 
     console.log("markers", this.state.markers);
-    
-    this.player.markers({ 
+
+    this.player.markers({
       markerStyle: {
-      'width':'8px',
-      'background-color': 'none',
-      'margin-bottom': '4px'
+        'width': '8px',
+        'background-color': 'none',
+        'margin-bottom': '4px'
       },
-      markerTip:{
+      markerTip: {
         display: true,
-        text: function(marker) {
-           return marker.text;
+        text: function (marker) {
+          return marker.text;
         },
-        time: function(marker) {
-           return marker.time;
+        time: function (marker) {
+          return marker.time;
         }
-     },
+      },
       markers: this.props.staticMarkers
-      });
-      
+    });
+
   }
 
   onMouseOver = () => {
-    this.setState({opacityclass: "op5"});
-    this.setState({videoZindex: "z1"});
-    this.setState({graphZindex: "z999"});
+    this.setState({ opacityclass: "op5" });
+    this.setState({ videoZindex: "z1" });
+    this.setState({ graphZindex: "z999" });
   }
 
   onMouseLeave = () => {
     this.setState({ opacityclass: "op1" });
-    this.setState({videoZindex: "z999"});
-    this.setState({graphZindex: "z1"});
+    this.setState({ videoZindex: "z999" });
+    this.setState({ graphZindex: "z1" });
   }
 
   componentWillUnmount() {
@@ -71,23 +71,23 @@ export default class VideoPlayer extends React.Component {
   }
 
   graphPointSeek = (time) => {
-    let timeInSeconds = time/(60);
+    let timeInSeconds = time / (60);
     this.updateCurrentTime(timeInSeconds);
   }
 
   updateMarkers = () => {
     let markerEvents = [];
-    
-      console.log("In after update", this.state.listOfIntervals);
-      
-      for(let i=0;i<this.state.listOfIntervals.length;i++){
-        let obj = {};
-        obj['time'] = this.state.listOfIntervals[i].startTime;
-        obj['text'] = "event";
-        obj['class'] = "fas fa-star orange"
-        console.log(obj);
-        
-        markerEvents.push(obj);
+
+    console.log("In after update", this.state.listOfIntervals);
+
+    for (let i = 0; i < this.state.listOfIntervals.length; i++) {
+      let obj = {};
+      obj['time'] = this.state.listOfIntervals[i].startTime;
+      obj['text'] = "event";
+      obj['class'] = "fas fa-star orange"
+      console.log(obj);
+
+      markerEvents.push(obj);
     }
 
     markerEvents.push(...this.props.staticMarkers);
@@ -95,28 +95,28 @@ export default class VideoPlayer extends React.Component {
     this.player.markers.removeAll();
     this.player.markers.add(markerEvents);
   }
-  
+
   onTagSelect(TagName) {
     this.setState((prevState) => {
       let newSetOfIntervals = prevState.listOfIntervals.concat(this.mergedIntervals(this.props.tags[TagName]));
       let merged = this.mergedIntervals(newSetOfIntervals);
       prevState.currentTagSelected.push(TagName);
-      return { listOfIntervals: merged,  currentTagSelected: prevState.currentTagSelected}
-    },() => {
+      return { listOfIntervals: merged, currentTagSelected: prevState.currentTagSelected }
+    }, () => {
       this.updateMarkers();
     });
   }
-  update
+  
   onTagUnselect(TagName) {
     console.log("keyword unselected: " + TagName);
     this.setState((prevState) => {
       console.log("Current selected");
       console.log(prevState.currentTagSelected);
-      
-      
+
+
       let index = prevState.currentTagSelected.indexOf(TagName);
-      if(index> -1){
-        prevState.currentTagSelected.splice(index,1);
+      if (index > -1) {
+        prevState.currentTagSelected.splice(index, 1);
       }
       console.log("Current selected after removing");
       console.log(prevState.currentTagSelected);
@@ -124,9 +124,9 @@ export default class VideoPlayer extends React.Component {
       let newSetOfIntervals = this.calculateIntervals(prevState.currentTagSelected);
       console.log("Calculated after removing");
       console.log(newSetOfIntervals);
-      
-      
-      return {currentTagSelected: prevState.currentTagSelected ,listOfIntervals: newSetOfIntervals};
+
+
+      return { currentTagSelected: prevState.currentTagSelected, listOfIntervals: newSetOfIntervals };
     }, () => {
       this.updateMarkers();
     })
@@ -135,13 +135,13 @@ export default class VideoPlayer extends React.Component {
   calculateIntervals(tagArr) {
     let intervals = [];
 
-    for(let i=0;i<tagArr.length;i++) {
+    for (let i = 0; i < tagArr.length; i++) {
       intervals.push(...this.props.tags[tagArr[i]]);
     }
 
     console.log("Calculating again");
     console.log(intervals);
-    
+
     return this.mergedIntervals(intervals);
   }
 
@@ -152,7 +152,7 @@ export default class VideoPlayer extends React.Component {
     var stack = [];
     var top = null;
 
-    intervals = intervals.sort((a,b) => {return a.startTime - b.startTime});
+    intervals = intervals.sort((a, b) => { return a.startTime - b.startTime });
 
 
     stack.push(intervals[0]);
@@ -174,36 +174,34 @@ export default class VideoPlayer extends React.Component {
       }
     }
     console.log(stack);
-    
+
     return stack;
 
   }
- 
+
 
   render() {
 
-    
+
     return (
       <div className="row">
         <div className="col-8">
-        <div className={this.state.graphZindex + " overlay " + this.state.opacityclass}   onMouseLeave={this.onMouseLeave}>
-          <TweetCountGraph graphPointSeek={this.graphPointSeek}/>
-        </div>
-
-        <div className={this.state.opacityclass + ' videoplayer ' + this.state.videoZindex}  onMouseEnter={this.onMouseOver}>
-          <div data-vjs-player>
-            <video ref={node => this.videoNode = node} className="video-js"></video>
+          <div className={this.state.graphZindex + " overlay " + this.state.opacityclass} onMouseLeave={this.onMouseLeave}>
+            <TweetCountGraph graphPointSeek={this.graphPointSeek} />
           </div>
-        </div>
-      
-        <VideoDescription />
+
+          <div className={this.state.opacityclass + ' videoplayer ' + this.state.videoZindex} onMouseEnter={this.onMouseOver}>
+            <div data-vjs-player>
+              <video ref={node => this.videoNode = node} className="video-js"></video>
+            </div>
+          </div>
+
+          <VideoDescription />
         </div>
 
         <div className="col-4">
-          <RightPane tags={this.props.tags} onTagSelect={this.onTagSelect.bind(this)} onTagUnselect={this.onTagUnselect.bind(this)} />  
+          <RightPane tags={this.props.tags} onTagSelect={this.onTagSelect.bind(this)} onTagUnselect={this.onTagUnselect.bind(this)} />
         </div>
-        
-  
       </div>
 
     )
