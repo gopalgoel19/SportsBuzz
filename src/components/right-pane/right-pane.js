@@ -66,7 +66,8 @@ export default class RightPane extends Component {
     for (let i=0;i<this.state.listOfButton.length;i++){
         if(this.state.listOfButton[i].tag == name){
           let btnStyle = this.state.listOfButton[i].style;
-          oldList.splice(i,1);
+          // oldList.splice(i,1);
+          oldList[i].style= btnStyle == "selected" ? "unselected" : "selected"
           found=true;
           obj2 = {
             tag: name,
@@ -74,8 +75,11 @@ export default class RightPane extends Component {
           }
       }
     }
+    if(!found){
+      oldList.push(obj2);
+    }
     this.setState((prevState)=>{
-        return { listOfButton: prevState.listOfButton.concat(obj2) };
+        return { listOfButton: oldList };
     });
   }
 

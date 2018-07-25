@@ -13,6 +13,7 @@ export default class LeftPane extends Component {
     this.state = {
       autoplay: true,
       controls: true,
+      "inactivityTimeout": 0,
       height:400,
       sources: [{
         src: 'http://vjs.zencdn.net/v/oceans.mp4',
