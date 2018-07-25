@@ -8,3 +8,15 @@
     padding: 10px;
     box-shadow: 1px 1px 12px 2px #a8a2a2;
 }
+
+#custom-search-input{
+    padding: 2px;
+    border: solid 1px #E4E4E4;
+    border-radius: 6px;
+    background-color: #fff;
+}
+
+#custom-search-input input{
+    border: 0;
+    box-shadow: none;
+}
