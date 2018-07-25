@@ -4,7 +4,7 @@
     margin-right: 10px;
 }
 .bg-light {
-    background-color: rgb(206, 34, 80) !important;
+    background-color:#3C4257 !important;
     border-radius: 5px;
     height: 45px;
     padding: 10px;
@@ -13,8 +13,6 @@
 
 .navbar-brand {
     color: white !important;
-    font-weight: 600;
-
     font-size: 1.2rem;
     font-family: 'Karla', sans-serif;
     letter-spacing: 2px;

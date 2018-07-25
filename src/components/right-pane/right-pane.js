@@ -12,7 +12,7 @@ export default class RightPane extends Component {
   render() {
     const listOfButton = this.props.tags.map((tag) => <Button key={tag} name={tag}/>);
     return (
-      <div className="col">
+      <div className="col rightpane">
         <h4 className="tags">Tags</h4>
         <hr />
         <div className='content-container'>

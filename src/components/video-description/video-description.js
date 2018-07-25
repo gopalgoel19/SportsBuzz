@@ -9,11 +9,13 @@ export default class VideoDescription extends Component {
             <span className="row lead-text">France vs Croatia</span>
             <span className="row footer-text">Tournament: World Cup </span>
           </div>
-          <div className="col-4">
-           
-          </div>
           <hr />
         </div>
+        <br />
+        <div className="row">
+           <p>France's array of superstars came out to shine as Antoine Griezmann, Paul Pogba and Kylian Mbappe fired them to World Cup glory with an emphatic 4-2 win over Croatia.</p>
+        </div>
+     
       </div>
     )
   }

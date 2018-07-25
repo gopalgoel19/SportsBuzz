@@ -17,6 +17,8 @@
 
 .videoplayer {
     position: relative;
+    width: 960px;
+    box-shadow: 0px 2px 10px 5px #a8a2a2;
 }
 
 .z999 {

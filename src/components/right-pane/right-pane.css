@@ -3,3 +3,8 @@
 .tags {
     font-family: 'Asap', sans-serif;
 }
+
+.rightpane {
+    padding: 10px;
+    box-shadow: 1px 1px 12px 2px #a8a2a2;
+}
