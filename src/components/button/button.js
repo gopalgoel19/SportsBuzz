@@ -5,7 +5,6 @@ export default class Button extends Component{
     constructor(props){
         super(props)
         this.state = {
-            style: this.props.buttonState,
             buttonStyle: {
                 "selected": {margin: '10px', borderRadius: '19px', border: '0px', backgroundImage: 'linear-gradient(99deg,#000000,#000000'},
                 "unselected": {margin: '10px', borderRadius: '19px', border: '0px', backgroundImage: 'linear-gradient(99deg,#f74530,#ff2e73'}
@@ -13,28 +12,21 @@ export default class Button extends Component{
         }
     }
     selectButton(name,e){
-        this.props.addToListOfButton(name);
-        this.setState((prevState)=>{
-            let tagstyle = {};
-
-            if(prevState.style === "unselected"){
-                this.props.onTagSelect(name);
-                return {style: "selected"};
-            }
-            else{
-                this.props.onTagUnselect(name);
-                return {style: "unselected"};
-            }
-        });
+        this.props.handleButtonClick(name);
+        if(this.props.buttonState === "unselected"){
+            this.props.onTagSelect(name);
+        }
+        else{
+            this.props.onTagUnselect(name);
+        }
     }
     render(){
-        // console.log(this.props.buttonState)
         return(
             <button 
                 type='button' 
                 onClick={(e) => this.selectButton(this.props.name,e)}
                 className='btn btn-secondary tag-button'
-                style={this.state.buttonStyle[this.state.style]}
+                style={this.state.buttonStyle[this.props.buttonState]}
             >
             {this.props.name}
             </button>

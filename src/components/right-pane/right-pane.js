@@ -6,6 +6,7 @@ export default class RightPane extends Component {
 
   constructor(props){
     super(props);
+
     let listOfButtonSelected = [];
     let listOfKeywords = [];
     for (let tag in this.props.tags){
@@ -17,9 +18,14 @@ export default class RightPane extends Component {
     listOfKeywords.reverse();
     console.log(listOfKeywords);
     for(let i=0;i< listOfKeywords.length && i<20 ;i++){
-      let tag = listOfKeywords[i][1];
-      listOfButtonSelected.push(<Button key={tag} onTagSelect={this.props.onTagSelect} onTagUnselect={this.props.onTagUnselect} name={tag} addToListOfButton={this.addToListOfButton.bind(this)} buttonState="unselected"/>);
+      let name = listOfKeywords[i][1];
+      let obj = {
+        tag: name,
+        style: "unselected"
+      }
+      listOfButtonSelected.push(obj);
     }
+
     this.state = {
       listOfButton: listOfButtonSelected,
       listOfSearchedButton: []
@@ -35,33 +41,51 @@ export default class RightPane extends Component {
     for (let tag in this.props.tags){
       if(tag.startsWith(searchText)){
         this.setState((prevState) => {
-          return {listOfSearchedButton: prevState.listOfSearchedButton.concat(<Button key={tag} onTagSelect={this.props.onTagSelect} onTagUnselect={this.props.onTagUnselect} name={tag} addToListOfButton={this.addToListOfButton.bind(this)} buttonState="unselected"/>)};
+          let obj = {
+            tag: tag,
+            style: "unselected"
+          }
+          return {listOfSearchedButton: prevState.listOfSearchedButton.concat(obj)};
         });
       }
     }
   }
 
-  addToListOfButton(tag){
-    this.setState((prevState) => {
-      // console.log(this.state.listOfButton);
-      let found = false;
 
-      for (let i=0;i<this.state.listOfButton.length;i++){
-        if(this.state.listOfButton[i].key == tag){
-          found = true;
-          
-          break;
-        }
+  handleButtonClick(name){
+    let obj1 = {
+      tag: name,
+      style: "unselected"
+    };
+    let obj2 = {
+      tag: name,
+      style: "selected"
+    };
+    let found = false;
+    let oldList = this.state.listOfButton;
+    for (let i=0;i<this.state.listOfButton.length;i++){
+        if(this.state.listOfButton[i].tag == name){
+          let btnStyle = this.state.listOfButton[i].style;
+          oldList.splice(i,1);
+          found=true;
+          obj2 = {
+            tag: name,
+            style: btnStyle == "selected" ? "unselected" : "selected"
+          }
       }
-
-      if(found){
-        return {listOfButton: prevState.listOfButton}
-      }
-      else return {listOfButton: prevState.listOfButton.concat(<Button key={tag} onTagSelect={this.props.onTagSelect} onTagUnselect={this.props.onTagUnselect} name={tag} addToListOfButton={this.addToListOfButton.bind(this)} buttonState="selected"/>)};
+    }
+    this.setState((prevState)=>{
+        return { listOfButton: prevState.listOfButton.concat(obj2) };
     });
   }
 
   render() {
+    let listOfButtonComponents = this.state.listOfButton.map((obj) => {
+      return <Button key={obj.tag} onTagSelect={this.props.onTagSelect} onTagUnselect={this.props.onTagUnselect} name={obj.tag} handleButtonClick={this.handleButtonClick.bind(this)} buttonState={obj.style}/>
+    });
+    let listOfSearchedButtonComponents = this.state.listOfSearchedButton.map((obj) => {
+      return <Button key={obj.tag} onTagSelect={this.props.onTagSelect} onTagUnselect={this.props.onTagUnselect} name={obj.tag} handleButtonClick={this.handleButtonClick.bind(this)} buttonState={obj.style}/>
+    });
     return (
       <div className="col rightpane">
         <h4 className="tags">Tags</h4>
@@ -71,11 +95,11 @@ export default class RightPane extends Component {
             </div>
         </div>
         <div className='content-container'>
-          {this.state.listOfSearchedButton}
+          {listOfSearchedButtonComponents}
         </div>
         <hr />
         <div className='content-container'>
-          {this.state.listOfButton}
+          {listOfButtonComponents}
         </div>
       </div>
     )
