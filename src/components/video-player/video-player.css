@@ -1,5 +1,6 @@
 @import '../../../node_modules/video.js/dist/video-js.css';
 @import "../../../node_modules/video-react/dist/video-react.css";
+@import "../../../node_modules/videojs-markers/dist/videojs.markers.css";
 .overlay {
     position: absolute;
     width: 960px;
@@ -27,4 +28,19 @@
 
 .z1 {
     z-index: 1;
+}
+.fa-futbol-o {
+    
+}
+.red{
+    background-color: color;
+    color: red;
+}
+.yellow {
+    background-color: color;
+    color: yellow;
+}
+
+.rotate90 {
+    transform: rotate(90deg);
 }

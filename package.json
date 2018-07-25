@@ -5,6 +5,7 @@
   "dependencies": {
     "bootstrap": "^4.1.2",
     "canvasjs": "^1.8.1",
+    "jquery": "^3.3.1",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-d3-basic": "^1.6.11",
@@ -13,7 +14,8 @@
     "reactstrap": "^6.3.0",
     "redux": "^4.0.0",
     "video-react": "^0.13.0",
-    "video.js": "^7.0.5"
+    "video.js": "^7.0.5",
+    "videojs-markers": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

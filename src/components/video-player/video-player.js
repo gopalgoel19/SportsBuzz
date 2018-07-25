@@ -3,7 +3,8 @@ import videojs from 'video.js';
 import './video-player.css';
 import TweetCountGraph from '../tweet-count-graph/tweet-count-graph';
 import VideoDescription from '../video-description/video-description';
-import { Player, ControlBar } from 'video-react';
+import 'videojs-markers';
+
 const sources = {
   sintelTrailer: 'http://media.w3.org/2010/05/sintel/trailer.mp4',
   bunnyTrailer: 'http://media.w3.org/2010/05/bunny/trailer.mp4',
@@ -26,6 +27,21 @@ export default class VideoPlayer extends React.Component {
     this.player = videojs(this.videoNode, this.props,  () => {
 
     });
+
+    this.player.markers({ 
+      markerStyle: {
+      'width':'8px',
+      'background-color': 'none',
+      'margin-bottom': '4px'
+      },
+      markers: [
+      {time: 1, text: "this", class: 'fa fa-futbol-o'},
+      {time: 5, text: "is", class: 'fa fa-bookmark red'},
+      {time: 23.6,text: "so", class: 'fa fa-bookmark yellow'},
+      {time: 29, text: "cool", class: 'fa fa-exchange-alt'}
+      ]
+      })
+      
   }
 
   onMouseOver = () => {

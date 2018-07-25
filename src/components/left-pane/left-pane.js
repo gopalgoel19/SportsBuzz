@@ -11,7 +11,7 @@ export default class LeftPane extends Component {
   constructor(props){
     super(props);
     this.state = {
-      autoplay: false,
+      autoplay: true,
       controls: true,
       height:400,
       sources: [{
