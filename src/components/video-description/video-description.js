@@ -1,10 +1,17 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import './video-description.css';
+import Marker from '../marker/marker';
 export default class VideoDescription extends Component {
   render() {
+    // console.log(this.props.listOfIntervals);
+    const listOfMarkers = this.props.listOfIntervals.map((obj) => <Marker start={obj.startTime} end={obj.endTime} />);
+    // console.log(listOfMarkers);
     return (
-      <div className="height200 mt-3 col-12">
+      <div className="height200 col-12">
         <div className="row">
+        {listOfMarkers}
+        </div>
+        <div className="row mt-3">
           <div className="col-4">
             <span className="row lead-text">France vs Croatia</span>
             <span className="row footer-text">Tournament: World Cup </span>

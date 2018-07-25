@@ -80,7 +80,7 @@ export default class VideoPlayer extends React.Component {
             <video ref={node => this.videoNode = node} className="video-js"></video>
           </div>
         </div>
-        <VideoDescription />
+        <VideoDescription listOfIntervals={this.props.listOfIntervals}/>
 
         {/* <button onClick={this.updateCurrentTime.bind(this,5)}>5</button> */}
         {/* <button onClick={this.updateCurrentTime.bind(this,3)}>3</button> */}

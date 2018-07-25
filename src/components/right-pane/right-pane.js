@@ -4,13 +4,12 @@ import Button from '../button/button'
 
 export default class RightPane extends Component {
 
-  constructor(props){
-    super(props);
-    
-  }
-
   render() {
-    const listOfButton = this.props.tags.map((tag) => <Button key={tag} name={tag}/>);
+    let listOfButton = []
+    // const listOfButton = this.props.tags.map((tag) => <Button key={tag} onClick={this.props.onTagCllick} name={tag}/>);
+    for(let tag in this.props.tags){
+      listOfButton.push(<Button key={tag} onClick={this.props.onTagClick} name={tag}/>);
+    }
     return (
       <div className="col rightpane">
         <h4 className="tags">Tags</h4>
