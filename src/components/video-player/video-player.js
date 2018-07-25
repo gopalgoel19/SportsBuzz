@@ -18,7 +18,6 @@ export default class VideoPlayer extends React.Component {
 
   contructor(props) {
     this.overlayRef = React.createRef();
-
   }
 
   componentDidMount() {
@@ -141,7 +140,6 @@ export default class VideoPlayer extends React.Component {
 
     console.log("Calculating again");
     console.log(intervals);
-
     return this.mergedIntervals(intervals);
   }
 
@@ -183,6 +181,31 @@ export default class VideoPlayer extends React.Component {
   render() {
 
 
+    for (var i = 1; i < intervals.length; i++) {
+
+      top = stack[stack.length - 1];
+
+
+      if (top.endTime < intervals[i].startTime) {
+        stack.push(intervals[i]);
+      }
+
+      else if (top.endTime < intervals[i].endTime) {
+        top = intervals[i];
+        stack.pop();
+        stack.push(top);
+      }
+    }
+    console.log(stack);
+    
+    return stack;
+
+  }
+ 
+
+  render() {
+
+    
     return (
       <div className="row">
         <div className="col-8">

@@ -9,10 +9,11 @@ export default class RightPane extends Component {
 
     let listOfButtonSelected = [];
     let listOfKeywords = [];
+
     for (let tag in this.props.tags){
       let obj = this.props.tags[tag];
       let intervalsCount = obj.length;
-      listOfKeywords.push([intervalsCount,tag]);
+      listOfKeywords.push({intervalsCount: intervalsCount,tag: tag});
     }
     listOfKeywords.sort();
     listOfKeywords.reverse();
