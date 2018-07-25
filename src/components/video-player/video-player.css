@@ -44,3 +44,7 @@
 .rotate90 {
     transform: rotate(90deg);
 }
+
+.orange {
+    color: orange;
+}

@@ -17,7 +17,7 @@ export default class RightPane extends Component {
     listOfKeywords.sort();
     listOfKeywords.reverse();
     console.log(listOfKeywords);
-    for(let i=0;i< listOfKeywords.length && i<20 ;i++){
+    for(let i=0;i< listOfKeywords.length && i<30 ;i++){
       let name = listOfKeywords[i][1];
       let obj = {
         tag: name,
